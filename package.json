@@ -12,6 +12,7 @@
   "devDependencies": {
     "@nuxt/devtools": "latest",
     "@nuxt/ui": "^2.20.0",
+    "@nuxtjs/apollo": "^5.0.0-alpha.14",
     "nuxt": "^3.14.1592",
     "vue": "latest"
   }
