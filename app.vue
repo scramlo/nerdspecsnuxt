@@ -13,28 +13,26 @@ watch(darkMode, (darkModeValue) => {
 }, { immediate: true });
 
 const links = [{
-  label: 'Profile',
-  avatar: {
-    src: 'https://avatars.githubusercontent.com/u/739984?v=4'
-  },
-  badge: 100
+  label: 'About Me',
+  icon: 'i-heroicons-user',
+  to: '#about-me'
 }, {
-  label: 'Installation',
-  icon: 'i-heroicons-home',
-  to: '/getting-started/installation'
+  label: 'Work Experience',
+  icon: 'i-heroicons-briefcase',
+  to: '#work-experience'
 }, {
-  label: 'Vertical Navigation',
-  icon: 'i-heroicons-chart-bar',
-  to: '/components/vertical-navigation'
+  label: 'Blog',
+  icon: 'i-heroicons-book-open',
+  to: '#blog'
 }, {
-  label: 'Command Palette',
-  icon: 'i-heroicons-command-line',
-  to: '/components/command-palette'
+  label: 'Portfolio',
+  icon: 'i-heroicons-squares-2x2',
+  to: '#portfolio'
 }]
 
 </script>
 <template>
-<div>
+<div class="flex">
   <!-- Sidebar -->
   <aside class="flex flex-col h-screen w-1/6 p-5 gap-4 bg-secondary">
     <section class="h-full flex flex-col justify-between">
@@ -54,7 +52,6 @@ const links = [{
               @click="darkMode = !darkMode" 
               :ui="{ rounded: 'rounded-full' }"
             />
-            <!-- <UButton v-else icon="i-heroicons-sun" class="text-white" @click="darkMode = !darkMode" /> -->
         </ColorScheme>
       </footer>
     </section>
@@ -62,9 +59,29 @@ const links = [{
 
     </div>
   </aside>
-  <main class="flex flex-col w-3/4">
+  <main class="flex flex-col w-full pt-5 mt-20 px-10">
     <!-- About Me -->
-    <section></section>
+    <section class="flex gap-4 justify-center items-center">
+      <div class="w-1/2 flex justify-center">
+        <div>
+          <span class="text-2xl font-bold">Hello!</span>
+          <p class="text-lg">
+            Hi, I'm Brian, and I am an enterprise-experienced engineer with over
+            10+ years of experience. I have a passion for mentoring others and
+            creating products that people love. I believe great software comes
+            from strong teams, clear communication, accessible UX, scalable code,
+            and solid testing. I am a flexible developer and strong leader, ready to help you accomplish your goals.
+          </p>
+          <div class="flex gap-4">
+            <UButton to="/about" class="mt-4" color="gray">Learn More</UButton>
+            <UButton to="/about" class="mt-4">Contact Me</UButton>
+          </div>
+        </div>
+      </div>
+      <div class="w-1/2 flex justify-center items-center">
+        <img src="./static/brian-landscape.jpg" alt="Brian Scramlin" class="w-full shadow-lg" />
+      </div>
+    </section>
 
     <!-- Blog -->
     <section></section>
