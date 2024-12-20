@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const colorMode = useColorMode()
 
-const darkMode = ref(true);
+const darkMode = ref(false);
 
 watch(darkMode, (darkModeValue) => {
   if (darkModeValue === true) {
@@ -14,15 +14,15 @@ watch(darkMode, (darkModeValue) => {
 const links = [{
   label: 'About Me',
   icon: 'i-heroicons-user',
-  to: '#about-me'
+  to: '/#about-me'
 }, {
   label: 'Work Experience',
   icon: 'i-heroicons-briefcase',
-  to: '#work-experience'
+  to: '/#work-experience'
 }, {
   label: 'Blog',
   icon: 'i-heroicons-book-open',
-  to: '#blog'
+  to: '/#blog'
 }, {
   label: 'Portfolio',
   icon: 'i-heroicons-squares-2x2',
@@ -66,16 +66,18 @@ const blogPosts = computed(() => {
   return data.value.publication.posts.edges.map((edge) => edge.node);
 });
 
+const sidebarWidthClass = 'lg:w-[300px]';
+const mainLeftMarginClass = 'lg:ml-[300px]';
 </script>
 <template>
 <div class="flex flex-col lg:flex-row">
   <!-- Sidebar -->
-  <aside class="flex flex-col w-full lg:w-1/6 p-5 gap-4 bg-secondary">
+  <aside class="flex flex-col w-full p-5 gap-4 bg-secondary fixed h-screen shadow-lg" :class="sidebarWidthClass">
     <section class="h-full flex flex-col justify-between">
       <!-- Top portion of sidebar -->
       <div>
         <header class="mb-4">
-          <img src="./static/logo-circle-bg.svg" alt="Nerd Specs Creative Logo" class="w-24 mx-auto" />
+          <img src="./static/logo-circle-bg.svg" alt="Nerd Specs Creative Logo" class="w-full mx-auto" />
         </header>
         <!-- Has semantic nav built in -->
         <UVerticalNavigation :links="links" />
@@ -95,9 +97,11 @@ const blogPosts = computed(() => {
 
     </div>
   </aside>
-  <main class="flex flex-col w-full px-10">
+
+  <main class="flex flex-col w-full px-10" :class="mainLeftMarginClass">
+
     <!-- About Me -->
-    <section class="flex gap-4 justify-center items-center">
+    <section id="about-me" class="flex gap-4 justify-center items-center">
       <div class="w-1/2 flex justify-center">
         <div>
           <span class="text-2xl font-bold">Hello!</span>
@@ -109,18 +113,28 @@ const blogPosts = computed(() => {
             and solid testing. I am a flexible developer and strong leader, ready to help you accomplish your goals.
           </p>
           <div class="flex gap-4">
-            <UButton to="/about" class="mt-4" color="gray">Learn More</UButton>
-            <UButton to="/about" class="mt-4">Contact Me</UButton>
+            <UButton to="#about-me" class="mt-4" color="gray">Learn More</UButton>
+            <UButton to="#blog" class="mt-4">Contact Me</UButton>
           </div>
         </div>
       </div>
       <div class="w-1/2 flex justify-center items-center">
-        <img src="./static/brian-landscape.jpg" alt="Brian Scramlin" class="w-full shadow-lg" />
+        <img src="./static/brian-landscape.jpg" alt="Brian Scramlin" class="w-full frame" />
       </div>
     </section>
 
+    <!-- Work Experience -->
+     <section id="work-experience">
+      <div class="grid grid-cols-4 items-center gap-60">
+        <img src="./static/gradecam.svg" alt="GradeCam Logo" />
+        <img src="./static/arborxr.svg" alt="ArborXR logo" />
+        <img src="./static/slingshot.webp" alt="Slingshot Logo" />
+        <img src="./static/campus.svg" alt="Campus Logo" />
+      </div>
+     </section>
+
     <!-- Blog -->
-    <section class="bg-gray-100 dark:bg-gray-800">
+    <section id="blog">
       <header>
         <h2 class="text-3xl font-bold mb-10">Latest Blog Posts</h2>
       </header>
@@ -131,6 +145,7 @@ const blogPosts = computed(() => {
               <img 
                 :src="blogPosts[0]?.coverImage.url"
                 :alt="blogPosts[0]?.title"
+                class="frame"
               />
             </a>
             <h3 class="text-3xl">{{ blogPosts[0]?.title }}</h3>
@@ -144,6 +159,7 @@ const blogPosts = computed(() => {
               <img 
                 :src="blogPosts[1]?.coverImage.url"
                 :alt="blogPosts[1]?.title"
+                class="w-full frame"
               />
               </a>
             <h3 class="text-3xl">{{ blogPosts[1]?.title }}</h3>
@@ -155,6 +171,7 @@ const blogPosts = computed(() => {
               <img 
                 :src="blogPosts[2]?.coverImage.url"
                 :alt="blogPosts[2]?.title"
+                class="w-full frame"
               />
             </a>
             <h3 class="text-3xl">{{ blogPosts[2]?.title }}</h3>
@@ -174,5 +191,18 @@ const blogPosts = computed(() => {
 <style scoped>
 section {
   @apply p-10;
+}
+
+main section:nth-child(even) {
+  @apply bg-gray-100 dark:bg-gray-800;
+}
+
+.frame {
+  @apply border-white border-8 rounded shadow-lg;
+}
+
+/* smooth scrolling */
+html {
+  scroll-behavior: smooth;
 }
 </style>
