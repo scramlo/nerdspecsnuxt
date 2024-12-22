@@ -126,14 +126,56 @@ const mainLeftMarginClass = 'lg:ml-[300px]';
     </section>
 
     <!-- Work Experience -->
-     <section id="work-experience">
+     <!-- <section id="work-experience">
       <div class="grid grid-cols-4 items-center gap-60">
         <img src="./static/gradecam.svg" alt="GradeCam Logo" />
         <img src="./static/arborxr.svg" alt="ArborXR logo" />
         <img src="./static/slingshot.webp" alt="Slingshot Logo" />
         <img src="./static/campus.svg" alt="Campus Logo" />
       </div>
-     </section>
+     </section> -->
+
+    <!-- work experience 2 -->
+    <section id="work-experience">
+      <header>
+        <h2 class="text-3xl font-bold mb-10">Work Experience</h2>
+      </header>
+      <div class="grid grid-cols-2 gap-4 auto-rows-fr">
+         <article class="flex flex-col gap-2 relative">
+            <div class="bg-white absolute w-1/2 bottom-10 p-5 h-20 flex justify-center items-center">
+              <img src="./static/gradecam.svg" alt="GradeCam Logo" class="max-h-full" />
+            </div>
+            <img 
+              src="./static/gradecam-team.jpeg"
+              alt="GradeCam Team"
+              class="frame"
+            />
+         </article>
+         <article class="flex flex-col gap-2 row-span-2 relative">
+          <div class="bg-white absolute w-1/2 bottom-10 p-5 h-20 flex justify-center items-center">
+            <img src="./static/slingshot.webp" alt="Slingshot Logo" class="max-h-full mr-4" />
+            <img src="./static/campus.svg" alt="Slingshot Logo" class="max-h-full" />
+          </div>
+          <img 
+              src="./static/slingshot-team.jpeg"
+              alt="Slingshot Team"
+              class="frame h-full object-cover object-right"
+            />
+         </article>
+         <div class="flex flex-col gap-4">
+          <article class="flex flex-col gap-2 row-span-2 relative">
+            <div class="bg-white absolute w-1/2 bottom-10 p-5 h-20 flex justify-center items-center">
+              <img src="./static/arborxr.svg" alt="Slingshot Logo" class="max-h-full" />
+            </div>
+            <img 
+              src="./static/arborxr-team.jpeg"
+              alt="ArborXR Team"
+              class="frame"
+            />
+         </article>
+         </div>
+      </div>
+    </section>
 
     <!-- Blog -->
     <section id="blog">
