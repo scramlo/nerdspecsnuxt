@@ -68,6 +68,42 @@ const blogPosts = computed(() => {
 
 const sidebarWidthClass = 'lg:w-[300px]';
 const mainLeftMarginClass = 'lg:ml-[300px]';
+
+const workExperienceItems = [
+  {
+    title: 'GradeCam',
+    logo: './work-experience/gradecam.svg',
+    teamImage: './work-experience/gradecam-team.jpeg',
+    description: `I became a Senior Frontend Engineer at GradeCam to help develop
+      their K-12 product. While on staff, I worked closely with the Product Team,
+      mentored other developers, and launched a new business-focused product.
+      I had the opportunity to take on backend responsibilities as well. After 20+
+      years, GradeCam’s investors decided to kill Gradient and focus on selling
+      their camera technology as a service`,
+  },
+  {
+    title: 'ArborXR',
+    logo: './work-experience/arborxr.svg',
+    teamImage: './work-experience/arborxr-team.jpeg',
+    description: `In 2020 I had the privilege to develop enterprise-level Vue 2 and Vue 3
+applications for the Ed Tech companies Slingshot Edu and Campus Edu. In
+this position, I wrote features, helped develop a component library, created
+a greenfield product to bridge registrar offices with our software, and
+participated in product development. In addition to our modern stack, I was
+the sole Full-Stack Moodle developer.`,
+  },
+  {
+    title: 'Slingshot',
+    logo: './work-experience/slingshot.webp',
+    teamImage: './work-experience/slingshot-team.jpeg',
+    description: `In 2022 I took a leap of faith to join a fast-growing XR management
+SaaS serving many Fortune 500s. Using the latest Vue 3 paradigms,
+including HOCs and stateful compositions, we created the most in-demand
+XR management software in the world. In my role, I was involved in many
+aspects of design and architectural considerations while continuing to write
+features. Unfortunately, ArborXR grew too quickly and made mass layoffs.`,
+  },
+];
 </script>
 <template>
 <div class="flex flex-col lg:flex-row">
@@ -98,7 +134,7 @@ const mainLeftMarginClass = 'lg:ml-[300px]';
     </div>
   </aside>
 
-  <main class="flex flex-col w-full px-10" :class="mainLeftMarginClass">
+  <main class="flex flex-col w-full" :class="mainLeftMarginClass">
 
     <!-- About Me -->
     <section id="about-me" class="flex gap-4 justify-center items-center h-screen">
@@ -121,69 +157,51 @@ const mainLeftMarginClass = 'lg:ml-[300px]';
         </div>
       </div>
       <div class="w-1/2 flex justify-center items-center">
-        <img src="./static/brian-main-image.webp" alt="Brian Scramlin" class="w-full frame" />
+        <img src="./static/brian-main-image.webp" alt="Brian Scramlin" class="max-h-[80vh] frame" />
       </div>
     </section>
 
-    <!-- Work Experience -->
-     <!-- <section id="work-experience">
-      <div class="grid grid-cols-4 items-center gap-60">
-        <img src="./static/gradecam.svg" alt="GradeCam Logo" />
-        <img src="./static/arborxr.svg" alt="ArborXR logo" />
-        <img src="./static/slingshot.webp" alt="Slingshot Logo" />
-        <img src="./static/campus.svg" alt="Campus Logo" />
-      </div>
-     </section> -->
-
-    <!-- work experience 2 -->
-    <section id="work-experience">
-      <header>
+    <!-- work experience -->
+    <section id="work-experience" class="flex justify-center items-center">
+      <div>
+        <header>
         <h2 class="text-3xl font-bold mb-10">Work Experience</h2>
       </header>
-      <div class="grid grid-cols-2 gap-4 auto-rows-fr">
-         <article class="flex flex-col gap-2 relative">
-            <div class="bg-white absolute w-1/2 bottom-10 p-5 h-20 flex justify-center items-center">
-              <img src="./static/gradecam.svg" alt="GradeCam Logo" class="max-h-full" />
-            </div>
-            <img 
-              src="./static/gradecam-team.jpeg"
-              alt="GradeCam Team"
-              class="frame"
-            />
-         </article>
-         <article class="flex flex-col gap-2 row-span-2 relative">
-          <div class="bg-white absolute w-1/2 bottom-10 p-5 h-20 flex justify-center items-center">
-            <img src="./static/slingshot.webp" alt="Slingshot Logo" class="max-h-full mr-4" />
-            <img src="./static/campus.svg" alt="Slingshot Logo" class="max-h-full" />
-          </div>
-          <img 
-              src="./static/slingshot-team.jpeg"
-              alt="Slingshot Team"
-              class="frame h-full object-cover object-right"
-            />
-         </article>
-         <div class="flex flex-col gap-4">
-          <article class="flex flex-col gap-2 row-span-2 relative">
-            <div class="bg-white absolute w-1/2 bottom-10 p-5 h-20 flex justify-center items-center">
-              <img src="./static/arborxr.svg" alt="Slingshot Logo" class="max-h-full" />
-            </div>
-            <img 
-              src="./static/arborxr-team.jpeg"
-              alt="ArborXR Team"
-              class="frame"
-            />
-         </article>
-         </div>
+      <UCarousel
+        v-slot="{ item, index }" 
+        :items="workExperienceItems" 
+        :ui="{ item: 'w-full' }"
+        :prev-button="{
+          color: 'gray',
+          icon: 'i-heroicons-arrow-left-20-solid',
+        }"
+        :next-button="{
+          color: 'gray',
+          icon: 'i-heroicons-arrow-right-20-solid',
+        }"
+        arrows
+        >
+          <article class="grid grid-cols-2 mx-2 gap-12 justify-center items-center">
+              <div class="flex flex-col gap-4">
+                <img :src="item.logo" alt="" class="max-w-48"/>
+                <p>{{ item.description }}</p>
+              </div>
+              <img 
+                :src="item.teamImage"
+                alt=""
+                class="frame max-h-[50vh] m-auto"
+              />
+          </article>
+        </UCarousel>
       </div>
     </section>
 
     <!-- Blog -->
     <section id="blog">
-      <header>
+        <header>
         <h2 class="text-3xl font-bold mb-10">Latest Blog Posts</h2>
       </header>
       <div class="flex gap-4">
-        <!-- featured post -->
          <article class="flex flex-col gap-2">
             <a :href="blogPosts[0]?.url">
               <img 
@@ -196,8 +214,6 @@ const mainLeftMarginClass = 'lg:ml-[300px]';
             <p class="text-xl">{{ blogPosts[0]?.subtitle }}</p>
             <p class="flex items-center gap-1"><UIcon name="i-heroicons-book-open" /> {{ blogPosts[0]?.readTimeInMinutes }} min read</p>
          </article>
-         <!-- next two articles -->
-         <div class="flex flex-col gap-4">
           <article class="flex flex-col gap-2">
               <a :href="blogPosts[1]?.url">
               <img 
@@ -222,8 +238,7 @@ const mainLeftMarginClass = 'lg:ml-[300px]';
             <p class="text-xl">{{ blogPosts[2]?.subtitle }}</p>
             <p class="flex items-center gap-1"><UIcon name="i-heroicons-book-open" /> {{ blogPosts[0]?.readTimeInMinutes }} min read</p>
          </article>
-         </div>
-      </div>
+        </div>
     </section>
 
     <!-- Portfolio -->
@@ -233,6 +248,7 @@ const mainLeftMarginClass = 'lg:ml-[300px]';
 </template>
 
 <style scoped>
+
 section {
   @apply p-10;
 }
