@@ -101,25 +101,27 @@ const mainLeftMarginClass = 'lg:ml-[300px]';
   <main class="flex flex-col w-full px-10" :class="mainLeftMarginClass">
 
     <!-- About Me -->
-    <section id="about-me" class="flex gap-4 justify-center items-center">
+    <section id="about-me" class="flex gap-4 justify-center items-center h-screen">
       <div class="w-1/2 flex justify-center">
-        <div>
-          <span class="text-2xl font-bold">Hello!</span>
+        <div class="flex flex-col gap-2">
+          <header>
+            <h2 class="text-3xl font-bold">Hello!</h2>
+          </header>
           <p class="text-lg">
-            Hi, I'm Brian, and I am an enterprise-experienced engineer with over
+            I'm Brian, and I am an enterprise-experienced software engineer with over
             10+ years of experience. I have a passion for mentoring others and
             creating products that people love. I believe great software comes
             from strong teams, clear communication, accessible UX, scalable code,
             and solid testing. I am a flexible developer and strong leader, ready to help you accomplish your goals.
           </p>
           <div class="flex gap-4">
-            <UButton to="#about-me" class="mt-4" color="gray">Learn More</UButton>
-            <UButton to="#blog" class="mt-4">Contact Me</UButton>
+            <UButton to="#work-experience" color="gray">Work Experience</UButton>
+            <UButton to="#blog">Contact Me</UButton>
           </div>
         </div>
       </div>
       <div class="w-1/2 flex justify-center items-center">
-        <img src="./static/brian-landscape.jpg" alt="Brian Scramlin" class="w-full frame" />
+        <img src="./static/brian-main-image.webp" alt="Brian Scramlin" class="w-full frame" />
       </div>
     </section>
 
@@ -194,13 +196,15 @@ section {
 }
 
 main section:nth-child(even) {
-  @apply bg-gray-100 dark:bg-gray-800;
+  @apply bg-gray-100;
 }
 
 .frame {
   @apply border-white border-8 rounded shadow-lg;
 }
+</style>
 
+<style>
 /* smooth scrolling */
 html {
   scroll-behavior: smooth;
