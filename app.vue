@@ -11,23 +11,30 @@ watch(darkMode, (darkModeValue) => {
   }
 }, { immediate: true });
 
-const links = [{
+// BRIAN LEAVING OFF WHY DON'T THE LINKS ACTIVE WORK
+const links = computed(() => {
+  return [{
   label: 'About Me',
   icon: 'i-heroicons-user',
-  to: '/#about-me'
+  to: '#about-me',
+  active: window?.location?.hash === '#about-me' || window?.location?.hash === ''
 }, {
   label: 'Work Experience',
   icon: 'i-heroicons-briefcase',
-  to: '/#work-experience'
+  to: '#work-experience',
+  active: window?.location?.hash === '#work-experience'
 }, {
   label: 'Blog',
   icon: 'i-heroicons-book-open',
-  to: '/#blog'
+  to: '#blog',
+  active: window?.location?.hash === '#blog'
 }, {
   label: 'Portfolio',
   icon: 'i-heroicons-squares-2x2',
-  to: '#portfolio'
+  to: '#portfolio',
+  active: window?.location?.hash === '#portfolio'
 }];
+});
 
 const query = gql`
 query {
@@ -96,12 +103,12 @@ the sole Full-Stack Moodle developer.`,
     title: 'Slingshot',
     logo: './work-experience/slingshot.webp',
     teamImage: './work-experience/slingshot-team.jpeg',
-    description: `In 2022 I took a leap of faith to join a fast-growing XR management
-SaaS serving many Fortune 500s. Using the latest Vue 3 paradigms,
-including HOCs and stateful compositions, we created the most in-demand
-XR management software in the world. In my role, I was involved in many
-aspects of design and architectural considerations while continuing to write
-features. Unfortunately, ArborXR grew too quickly and made mass layoffs.`,
+    description: `In 2020 I had the privilege to develop enterprise-level Vue 2 and Vue 3
+applications for the Ed Tech companies Slingshot Edu and Campus Edu. In
+this position, I wrote features, helped develop a component library, created
+a greenfield product to bridge registrar offices with our software, and
+participated in product development. In addition to our modern stack, I was
+the sole Full-Stack Moodle developer.`,
   },
 ];
 </script>
@@ -168,20 +175,13 @@ features. Unfortunately, ArborXR grew too quickly and made mass layoffs.`,
         <h2 class="text-3xl font-bold mb-10">Work Experience</h2>
       </header>
       <UCarousel
-        v-slot="{ item, index }" 
         :items="workExperienceItems" 
         :ui="{ item: 'w-full' }"
-        :prev-button="{
-          color: 'gray',
-          icon: 'i-heroicons-arrow-left-20-solid',
-        }"
-        :next-button="{
-          color: 'gray',
-          icon: 'i-heroicons-arrow-right-20-solid',
-        }"
         arrows
         >
-          <article class="grid grid-cols-2 mx-2 gap-12 justify-center items-center">
+
+          <template #default="{ item }">
+            <article class="grid grid-cols-2 mx-2 gap-12 justify-center items-center">
               <div class="flex flex-col gap-4">
                 <img :src="item.logo" alt="" class="max-w-48"/>
                 <p>{{ item.description }}</p>
@@ -191,7 +191,20 @@ features. Unfortunately, ArborXR grew too quickly and made mass layoffs.`,
                 alt=""
                 class="frame max-h-[50vh] m-auto"
               />
-          </article>
+            </article>
+         </template>
+
+          <template #prev="{ onClick, disabled }">
+            <UButton class="mt-10" :disabled="disabled" @click="onClick">
+              Prev
+            </UButton>
+          </template>
+
+          <template #next="{ onClick, disabled }">
+            <UButton class="mt-10" :disabled="disabled" @click="onClick">
+              Next
+            </UButton>
+          </template>
         </UCarousel>
       </div>
     </section>
@@ -210,7 +223,9 @@ features. Unfortunately, ArborXR grew too quickly and made mass layoffs.`,
                 class="frame"
               />
             </a>
-            <h3 class="text-3xl">{{ blogPosts[0]?.title }}</h3>
+            <h3 class="text-3xl">
+              <a :href="blogPosts[0]?.url">{{ blogPosts[0]?.title }}</a>
+            </h3>
             <p class="text-xl">{{ blogPosts[0]?.subtitle }}</p>
             <p class="flex items-center gap-1"><UIcon name="i-heroicons-book-open" /> {{ blogPosts[0]?.readTimeInMinutes }} min read</p>
          </article>
