@@ -78,7 +78,7 @@ const mainLeftMarginClass = 'lg:ml-[300px]';
 
 const workExperienceItems = [
   {
-    title: 'GradeCam',
+    title: 'Senior Full-Stack Engineer',
     logo: './work-experience/gradecam.svg',
     teamImage: './work-experience/gradecam-team.jpeg',
     description: `I became a Senior Frontend Engineer at GradeCam to help develop
@@ -89,7 +89,7 @@ const workExperienceItems = [
       their camera technology as a service`,
   },
   {
-    title: 'ArborXR',
+    title: 'Frontend Engineer II',
     logo: './work-experience/arborxr.svg',
     teamImage: './work-experience/arborxr-team.jpeg',
     description: `In 2020 I had the privilege to develop enterprise-level Vue 2 and Vue 3
@@ -100,7 +100,7 @@ participated in product development. In addition to our modern stack, I was
 the sole Full-Stack Moodle developer.`,
   },
   {
-    title: 'Slingshot',
+    title: 'Full-Stack Engineer',
     logo: './work-experience/slingshot.webp',
     teamImage: './work-experience/slingshot-team.jpeg',
     description: `In 2020 I had the privilege to develop enterprise-level Vue 2 and Vue 3
@@ -184,7 +184,11 @@ the sole Full-Stack Moodle developer.`,
             <article class="grid grid-cols-2 mx-2 gap-12 justify-center items-center">
               <div class="flex flex-col gap-4">
                 <img :src="item.logo" alt="" class="max-w-48"/>
-                <p>{{ item.description }}</p>
+                <h3 class="text-3xl">{{ item.title }}</h3>
+                <p class="flex flex-col gap-2">
+                  <span>{{ item.description }}</span>
+                  <span class="flex flex-row-reverse"><UButton>Learn More</UButton></span>
+                </p>
               </div>
               <img 
                 :src="item.teamImage"
