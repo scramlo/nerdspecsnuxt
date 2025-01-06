@@ -15,5 +15,8 @@
     "@nuxtjs/apollo": "^5.0.0-alpha.14",
     "nuxt": "^3.14.1592",
     "vue": "latest"
+  },
+  "dependencies": {
+    "@nuxt/content": "^2.13.4"
   }
 }

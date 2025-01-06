@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ['@nuxt/ui', '@nuxtjs/apollo'],
+  modules: ['@nuxt/ui', '@nuxtjs/apollo', '@nuxt/content'],
   compatibilityDate: '2024-12-18',
   apollo: {
     clients: {

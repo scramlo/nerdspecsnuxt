@@ -14,26 +14,26 @@ watch(darkMode, (darkModeValue) => {
 // BRIAN LEAVING OFF WHY DON'T THE LINKS ACTIVE WORK
 const links = computed(() => {
   return [{
-  label: 'About Me',
-  icon: 'i-heroicons-user',
-  to: '#about-me',
-  active: window?.location?.hash === '#about-me' || window?.location?.hash === ''
-}, {
-  label: 'Work Experience',
-  icon: 'i-heroicons-briefcase',
-  to: '#work-experience',
-  active: window?.location?.hash === '#work-experience'
-}, {
-  label: 'Blog',
-  icon: 'i-heroicons-book-open',
-  to: '#blog',
-  active: window?.location?.hash === '#blog'
-}, {
-  label: 'Portfolio',
-  icon: 'i-heroicons-squares-2x2',
-  to: '#portfolio',
-  active: window?.location?.hash === '#portfolio'
-}];
+    label: 'About Me',
+    icon: 'i-heroicons-user',
+    to: '#about-me',
+    active: window?.location?.hash === '#about-me' || window?.location?.hash === ''
+  }, {
+    label: 'Work Experience',
+    icon: 'i-heroicons-briefcase',
+    to: '#work-experience',
+    active: window?.location?.hash === '#work-experience'
+  }, {
+    label: 'Blog',
+    icon: 'i-heroicons-book-open',
+    to: '#blog',
+    active: window?.location?.hash === '#blog'
+  }, {
+    label: 'Portfolio',
+    icon: 'i-heroicons-squares-2x2',
+    to: '#portfolio',
+    active: window?.location?.hash === '#portfolio'
+  }];
 });
 
 const query = gql`
@@ -75,199 +75,112 @@ const blogPosts = computed(() => {
 
 const sidebarWidthClass = 'lg:w-[300px]';
 const mainLeftMarginClass = 'lg:ml-[300px]';
-
-const workExperienceItems = [
-  {
-    title: 'Senior Full-Stack Engineer',
-    logo: './work-experience/gradecam.svg',
-    teamImage: './work-experience/gradecam-team.jpeg',
-    description: `I became a Senior Frontend Engineer at GradeCam to help develop
-      their K-12 product. While on staff, I worked closely with the Product Team,
-      mentored other developers, and launched a new business-focused product.
-      I had the opportunity to take on backend responsibilities as well. After 20+
-      years, GradeCam’s investors decided to kill Gradient and focus on selling
-      their camera technology as a service`,
-  },
-  {
-    title: 'Frontend Engineer II',
-    logo: './work-experience/arborxr.svg',
-    teamImage: './work-experience/arborxr-team.jpeg',
-    description: `In 2020 I had the privilege to develop enterprise-level Vue 2 and Vue 3
-applications for the Ed Tech companies Slingshot Edu and Campus Edu. In
-this position, I wrote features, helped develop a component library, created
-a greenfield product to bridge registrar offices with our software, and
-participated in product development. In addition to our modern stack, I was
-the sole Full-Stack Moodle developer.`,
-  },
-  {
-    title: 'Full-Stack Engineer',
-    logo: './work-experience/slingshot.webp',
-    teamImage: './work-experience/slingshot-team.jpeg',
-    description: `In 2020 I had the privilege to develop enterprise-level Vue 2 and Vue 3
-applications for the Ed Tech companies Slingshot Edu and Campus Edu. In
-this position, I wrote features, helped develop a component library, created
-a greenfield product to bridge registrar offices with our software, and
-participated in product development. In addition to our modern stack, I was
-the sole Full-Stack Moodle developer.`,
-  },
-];
 </script>
 <template>
-<div class="flex flex-col lg:flex-row">
-  <!-- Sidebar -->
-  <aside class="flex flex-col w-full p-5 gap-4 bg-secondary fixed h-screen shadow-lg" :class="sidebarWidthClass">
-    <section class="h-full flex flex-col justify-between">
-      <!-- Top portion of sidebar -->
-      <div>
-        <header class="mb-4">
-          <img src="./static/logo-circle-bg.svg" alt="Nerd Specs Creative Logo" class="w-full mx-auto" />
-        </header>
-        <!-- Has semantic nav built in -->
-        <UVerticalNavigation :links="links" />
-      </div>
-      <footer class="flex flex-col justify-center items-center">
-        <ColorScheme>
-            <UButton 
-              :icon="darkMode ? 'i-heroicons-moon' : 'i-heroicons-sun'" 
-              class="text-white dark:text-white" 
-              @click="darkMode = !darkMode" 
-              :ui="{ rounded: 'rounded-full' }"
-            />
-        </ColorScheme>
-      </footer>
-    </section>
-    <div>
-
-    </div>
-  </aside>
-
-  <main class="flex flex-col w-full" :class="mainLeftMarginClass">
-
-    <!-- About Me -->
-    <section id="about-me" class="flex gap-4 justify-center items-center h-screen">
-      <div class="w-1/2 flex justify-center">
-        <div class="flex flex-col gap-2">
-          <header>
-            <h2 class="text-3xl font-bold">Hello!</h2>
+  <div class="flex flex-col lg:flex-row">
+    <!-- Sidebar -->
+    <aside class="flex flex-col w-full p-5 gap-4 bg-secondary fixed h-screen shadow-lg" :class="sidebarWidthClass">
+      <section class="h-full flex flex-col justify-between">
+        <!-- Top portion of sidebar -->
+        <div>
+          <header class="mb-4">
+            <img src="./static/logo-circle-bg.svg" alt="Nerd Specs Creative Logo" class="w-full mx-auto" />
           </header>
-          <p class="text-lg">
-            I'm Brian, and I am an enterprise-experienced software engineer with over
-            10+ years of experience. I have a passion for mentoring others and
-            creating products that people love. I believe great software comes
-            from strong teams, clear communication, accessible UX, scalable code,
-            and solid testing. I am a flexible developer and strong leader, ready to help you accomplish your goals.
-          </p>
-          <div class="flex gap-4">
-            <UButton to="#work-experience" color="gray">Work Experience</UButton>
-            <UButton to="#blog">Contact Me</UButton>
+          <!-- Has semantic nav built in -->
+          <UVerticalNavigation :links="links" />
+        </div>
+        <footer class="flex flex-col justify-center items-center">
+          <ColorScheme>
+            <UButton :icon="darkMode ? 'i-heroicons-moon' : 'i-heroicons-sun'" class="text-white dark:text-white"
+              @click="darkMode = !darkMode" :ui="{ rounded: 'rounded-full' }" />
+          </ColorScheme>
+        </footer>
+      </section>
+      <div>
+
+      </div>
+    </aside>
+
+    <main class="flex flex-col w-full" :class="mainLeftMarginClass">
+
+      <!-- About Me -->
+      <section id="about-me" class="flex gap-4 justify-center items-center h-screen">
+        <div class="w-1/2 flex justify-center">
+          <div class="flex flex-col gap-2">
+            <header>
+              <h2 class="text-3xl font-bold">Hello!</h2>
+            </header>
+            <p class="text-lg">
+              I'm Brian, and I am an enterprise-experienced software engineer with over
+              10+ years of experience. I have a passion for mentoring others and
+              creating products that people love. I believe great software comes
+              from strong teams, clear communication, accessible UX, scalable code,
+              and solid testing. I am a flexible developer and strong leader, ready to help you accomplish your goals.
+            </p>
+            <div class="flex gap-4">
+              <UButton to="#work-experience" color="gray">Work Experience</UButton>
+              <UButton to="#blog">Contact Me</UButton>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="w-1/2 flex justify-center items-center">
-        <img src="./static/brian-main-image.webp" alt="Brian Scramlin" class="max-h-[80vh] frame" />
-      </div>
-    </section>
+        <div class="w-1/2 flex justify-center items-center">
+          <img src="./static/brian-main-image.webp" alt="Brian Scramlin" class="max-h-[80vh] frame" />
+        </div>
+      </section>
 
-    <!-- work experience -->
-    <section id="work-experience" class="flex justify-center items-center">
-      <div>
+      <!-- work experience -->
+      <section id="work-experience" class="flex flex-col">
+        <WorkExperienceSlider />
+      </section>
+
+      <!-- Blog -->
+      <section id="blog">
         <header>
-        <h2 class="text-3xl font-bold mb-10">Work Experience</h2>
-      </header>
-      <UCarousel
-        :items="workExperienceItems" 
-        :ui="{ item: 'w-full' }"
-        arrows
-        >
-
-          <template #default="{ item }">
-            <article class="grid grid-cols-2 mx-2 gap-12 justify-center items-center">
-              <div class="flex flex-col gap-4">
-                <img :src="item.logo" alt="" class="max-w-48"/>
-                <h3 class="text-3xl">{{ item.title }}</h3>
-                <p class="flex flex-col gap-2">
-                  <span>{{ item.description }}</span>
-                  <span class="flex flex-row-reverse"><UButton>Learn More</UButton></span>
-                </p>
-              </div>
-              <img 
-                :src="item.teamImage"
-                alt=""
-                class="frame max-h-[50vh] m-auto"
-              />
-            </article>
-         </template>
-
-          <template #prev="{ onClick, disabled }">
-            <UButton class="mt-10" :disabled="disabled" @click="onClick">
-              Prev
-            </UButton>
-          </template>
-
-          <template #next="{ onClick, disabled }">
-            <UButton class="mt-10" :disabled="disabled" @click="onClick">
-              Next
-            </UButton>
-          </template>
-        </UCarousel>
-      </div>
-    </section>
-
-    <!-- Blog -->
-    <section id="blog">
-        <header>
-        <h2 class="text-3xl font-bold mb-10">Latest Blog Posts</h2>
-      </header>
-      <div class="flex gap-4">
-         <article class="flex flex-col gap-2">
+          <h2 class="text-3xl font-bold mb-10">Latest Blog Posts</h2>
+        </header>
+        <div class="flex gap-4">
+          <article class="flex flex-col gap-2">
             <a :href="blogPosts[0]?.url">
-              <img 
-                :src="blogPosts[0]?.coverImage.url"
-                :alt="blogPosts[0]?.title"
-                class="frame"
-              />
+              <img :src="blogPosts[0]?.coverImage.url" :alt="blogPosts[0]?.title" class="frame" />
             </a>
-            <h3 class="text-3xl">
+            <h3 class="text-2xl">
               <a :href="blogPosts[0]?.url">{{ blogPosts[0]?.title }}</a>
             </h3>
             <p class="text-xl">{{ blogPosts[0]?.subtitle }}</p>
-            <p class="flex items-center gap-1"><UIcon name="i-heroicons-book-open" /> {{ blogPosts[0]?.readTimeInMinutes }} min read</p>
-         </article>
+            <p class="flex items-center gap-1">
+              <UIcon name="i-heroicons-book-open" /> {{ blogPosts[0]?.readTimeInMinutes }} min read
+            </p>
+          </article>
           <article class="flex flex-col gap-2">
-              <a :href="blogPosts[1]?.url">
-              <img 
-                :src="blogPosts[1]?.coverImage.url"
-                :alt="blogPosts[1]?.title"
-                class="w-full frame"
-              />
-              </a>
-            <h3 class="text-3xl">{{ blogPosts[1]?.title }}</h3>
-            <p class="text-xl">{{ blogPosts[1]?.subtitle }}</p>
-            <p class="flex items-center gap-1"><UIcon name="i-heroicons-book-open" /> {{ blogPosts[0]?.readTimeInMinutes }} min read</p>
-         </article>
-         <article class="flex flex-col gap-2">
-            <a :href="blogPosts[2]?.url">
-              <img 
-                :src="blogPosts[2]?.coverImage.url"
-                :alt="blogPosts[2]?.title"
-                class="w-full frame"
-              />
+            <a :href="blogPosts[1]?.url">
+              <img :src="blogPosts[1]?.coverImage.url" :alt="blogPosts[1]?.title" class="w-full frame" />
             </a>
-            <h3 class="text-3xl">{{ blogPosts[2]?.title }}</h3>
+            <h3 class="text-2xl">{{ blogPosts[1]?.title }}</h3>
+            <p class="text-xl">{{ blogPosts[1]?.subtitle }}</p>
+            <p class="flex items-center gap-1">
+              <UIcon name="i-heroicons-book-open" /> {{ blogPosts[0]?.readTimeInMinutes }} min read
+            </p>
+          </article>
+          <article class="flex flex-col gap-2">
+            <a :href="blogPosts[2]?.url">
+              <img :src="blogPosts[2]?.coverImage.url" :alt="blogPosts[2]?.title" class="w-full frame" />
+            </a>
+            <h3 class="text-2xl">{{ blogPosts[2]?.title }}</h3>
             <p class="text-xl">{{ blogPosts[2]?.subtitle }}</p>
-            <p class="flex items-center gap-1"><UIcon name="i-heroicons-book-open" /> {{ blogPosts[0]?.readTimeInMinutes }} min read</p>
-         </article>
+            <p class="flex items-center gap-1">
+              <UIcon name="i-heroicons-book-open" /> {{ blogPosts[0]?.readTimeInMinutes }} min read
+            </p>
+          </article>
         </div>
-    </section>
+      </section>
 
-    <!-- Portfolio -->
-    <section></section>
-  </main>
-</div>
+      <!-- Portfolio -->
+      <section></section>
+    </main>
+  </div>
 </template>
 
 <style scoped>
-
 section {
   @apply p-10;
 }
@@ -275,15 +188,15 @@ section {
 main section:nth-child(even) {
   @apply bg-gray-100;
 }
-
-.frame {
-  @apply border-white border-8 rounded shadow-lg;
-}
 </style>
 
 <style>
 /* smooth scrolling */
 html {
   scroll-behavior: smooth;
+}
+
+.frame {
+  @apply border-white border-8 rounded shadow-lg;
 }
 </style>
