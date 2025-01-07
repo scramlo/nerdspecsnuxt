@@ -5,7 +5,7 @@ const workExperienceItems = [
     {
         title: 'GradeCam',
         position: 'Senior Full-Stack Engineer',
-        logo: './img/work-experience/gradecam/gradecam.svg',
+        logos: ['./img/work-experience/gradecam/gradecam.svg'],
         teamImage: './img/work-experience/gradecam/gradecam-team.jpeg',
         description: `I became a Senior Frontend Engineer at GradeCam to help develop
       their K-12 product. While on staff, I worked closely with the Product Team,
@@ -17,7 +17,7 @@ const workExperienceItems = [
     {
         title: 'ArborXR',
         position: 'Frontend Engineer II',
-        logo: './img/work-experience/arborxr/arborxr.svg',
+        logos: ['./img/work-experience/arborxr/arborxr.svg'],
         teamImage: './img/work-experience/arborxr/arborxr-team.jpeg',
         description: `In 2020 I had the privilege to develop enterprise-level Vue 2 and Vue 3
 applications for the Ed Tech companies Slingshot Edu and Campus Edu. In
@@ -29,7 +29,7 @@ the sole Full-Stack Moodle developer.`,
     {
         title: 'Slingshot Edu',
         position: 'Full-Stack Engineer',
-        logo: './img/work-experience/slingshot/slingshot.webp',
+        logos: ['./img/work-experience/slingshot/slingshot.webp', './img/work-experience/slingshot/campus.svg'],
         teamImage: './img/work-experience/slingshot/slingshot-team.jpeg',
         description: `In 2020 I had the privilege to develop enterprise-level Vue 2 and Vue 3
 applications for the Ed Tech companies Slingshot Edu and Campus Edu. In
@@ -41,7 +41,7 @@ the sole Full-Stack Moodle developer.`,
     {
         title: 'Nerd Specs Creative',
         position: 'Full-Stack Engineer',
-        logo: './img/work-experience/nerdspecs/logo-hor-plain2.svg',
+        logos: ['./img/work-experience/nerdspecs/logo-hor-plain2.svg'],
         teamImage: './img/work-experience/nerdspecs/nerdspecs-team.jpeg',
         description: `In 2014, I began developing web applications with Ruby on Rails and
 launched my own company. As I work with clients, I have been able to
@@ -86,6 +86,15 @@ async function openDetails(item: typeof workExperienceItems[0]) {
         }
     };
 
+    if (item.title === 'Nerd Specs Creative') {
+        try {
+            const { data } = await useAsyncData('workExperience', () => queryContent('work-experience/nerdspecs').findOne());
+            markdown = data.value;
+        } catch (e) {
+            console.error(e);
+        }
+    };
+
 
     modalData.value = {
         workExperienceItem: item,
@@ -104,7 +113,10 @@ async function openDetails(item: typeof workExperienceItems[0]) {
         <template #default="{ item }">
             <article class="grid grid-cols-2 mx-2 gap-12 justify-center items-center">
                 <div class="flex flex-col gap-4">
-                    <img :src="item.logo" alt="" class="max-w-48" />
+                    <div class="flex items-center gap-2">
+                        <img v-for="logoUrl in item.logos" :src="logoUrl" :alt="`${item.title} Logo`"
+                            class="max-w-48 max-h-fit-content" />
+                    </div>
                     <!-- <h3 class="text-3xl">{{ item.title }}</h3> -->
                     <p class="flex flex-col gap-2">
                         <span>{{ item.description }}</span>
@@ -179,6 +191,10 @@ async function openDetails(item: typeof workExperienceItems[0]) {
 
     ul {
         @apply ml-5 list-disc;
+    }
+
+    li {
+        @apply my-2;
     }
 
     img {

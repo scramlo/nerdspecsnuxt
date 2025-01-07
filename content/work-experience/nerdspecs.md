@@ -3,31 +3,26 @@ title: "Senior Full-Stack Engineer"
 ---
 **Overview**
 
-Working at GradeCam was a wonderful experience. We created software that helped thousands of educators across the United States save time and gain powerful analytics on student success.
+Nerd Specs Creative is my freelance agency. Starting in 2014, I have created custom web applications for clients. Additionally, I  provide creative direction, marketing, web hosting, email hosting, and support. Aside from software, I have created graphics, motion graphics, 3D renderings, and taken photos for companies.
 
-![test image](/img/work-experience/gradecam/gradecam-analytics.png)
+![Nerd Specs Product](/img/work-experience/nerdspecs/nerdspecs-screenshot.png)
 
 **Highlights** 
 
-- Integrating AI into our product to allow for auto importing of teacher answer keys into our system. This saved hours of work for instructors and gave us a taste of the power of AI to provide value to users. In addition to this integration, we created our own in-house testing framework to fine tune our prompt and compare and contrast LLM models. 
-- Greenfielding a new business-focused product and getting to market in less than six months.
-- Setting up Cypress framework, including database seeding, teardown, and authentication. I love Cypress and enjoyed mentoring other team members in E2E testing. I believe that if tests are more enjoyable to write, engineers will write more of them! This has a direct link to the bottom line. 
+- Using a variety of tech stacks, tools, and frameworks. It is enjoyable to help a client whiteboard through their outcomes and create a software solution that fits them.
+- Creating DrydenWire, a local news site that brings 70,000 true visitors a month. I leveraged automatic image cropping, optimization, and caching to achieve a snappy experience for this media-rich application. I also made the publishing experience easy to use.
+- Helping non-profits like Spooner Wesleyan Church, New Journey Community Church, Wabash Help, and Wabash Prayer House help more people through better software solutions.
 
 **Stack**
 
-- TypeScript
-- Node.js
-- Express.js
-- AngularJS
-- Vue 3
-- Tailwind
-- PrimeVue
-- MongoDB
-- Mongoose
-- Anthropic
-- ViteTest
-- Jasmine
-- Cypress
-- Apollo
-- Playwright
-- Kubernetes
+|  |  |
+| ----------- | ----------- |
+| Ruby on Rails | TypeScript |
+| Vue 2/3 | Cordova/PhoneGap |
+| JQuery | PHP |
+| WordPress | MySQL |
+| ProcessWire | Node.js |
+| Express.js | Meteor.js |
+| Bootstrap | Tailwind |
+| PhotoShop | Blender |
+

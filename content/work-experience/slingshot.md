@@ -5,7 +5,7 @@ title: "Full-Stack Engineer"
 
 Slingshot is the #2 textbook fulfillment service behind Amazon. We integrated with the enrollment systems of universities and automatically provided course material for students. In 2020, Slingshot created a completely new product called Campus Edu that allowed course creation, sharing, and degree audit integration. I worked 50% of my time on white label student portals for Slingshot, 25% on our Campus Edu LMS, and 25% on our course discovery and discovery tools.
 
-![gradecam portal](/img/work-experience/slingshot/campus-screenshot.png)
+![Slingshot Product](/img/work-experience/slingshot/campus-screenshot.png)
 
 **Highlights** 
 

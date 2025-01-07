@@ -5,7 +5,7 @@ title: "Frontend Engineer II"
 
 ArborXR was a very exciting  company to work for. They have [raised a ton of money](https://techcrunch.com/2024/08/13/arborxr-secures-12m-to-boost-management-platform-for-ar-and-vr-devices/) to become the de facto mass XR headset management solution for large and small fleets.
 
-![gradecam portal](/img/work-experience/arborxr/group-cast.png)
+![ArborXR Product](/img/work-experience/arborxr/group-cast.png)
 
 **Highlights** 
 

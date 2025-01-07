@@ -5,7 +5,7 @@ title: "Senior Full Stack Engineer"
 
 Working at GradeCam was a wonderful experience. We created software that helped thousands of educators across the United States save time and gain powerful analytics on student success.
 
-![test image](/img/work-experience/gradecam/gradecam-analytics.png)
+![Gradecam Product](/img/work-experience/gradecam/gradecam-analytics.png)
 
 **Highlights** 
 
