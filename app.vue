@@ -33,6 +33,11 @@ const links = computed(() => {
     icon: 'i-heroicons-squares-2x2',
     to: '#portfolio',
     active: window?.location?.hash === '#portfolio'
+  }, {
+    label: 'Contact Me',
+    icon: 'i-heroicons-envelope',
+    to: '#contact',
+    active: window?.location?.hash === '#contact'
   }];
 });
 
@@ -84,14 +89,16 @@ const mainLeftMarginClass = 'lg:ml-[300px]';
         <!-- Top portion of sidebar -->
         <div class="flex flex-col gap-4">
           <header>
-            <img src="./static/logo-circle-bg.svg" alt="Nerd Specs Creative Logo" class="w-full mx-auto" />
+            <a href="/">
+              <img src="./static/logo-circle-bg.svg" alt="Nerd Specs Creative Logo" class="w-full mx-auto" />
+            </a>
           </header>
           <!-- Has semantic nav built in -->
           <UVerticalNavigation :links="links" />
+        </div>
+        <footer class="flex flex-col gap-4 justify-center items-center">
           <a href="https://www.codementor.io/@scramlo?refer=badge" class="mx-auto"><img
               src="https://www.codementor.io/m-badges/scramlo/find-me-on-cm-b.svg" alt="Codementor badge"></a>
-        </div>
-        <footer class="flex flex-col justify-center items-center">
           <ColorScheme>
             <UButton :icon="darkMode ? 'i-heroicons-moon' : 'i-heroicons-sun'" class="text-white dark:text-white"
               @click="darkMode = !darkMode" :ui="{ rounded: 'rounded-full' }" />
@@ -121,7 +128,7 @@ const mainLeftMarginClass = 'lg:ml-[300px]';
             </p>
             <div class="flex gap-4">
               <UButton to="#work-experience" color="gray">Work Experience</UButton>
-              <UButton to="#blog">Contact Me</UButton>
+              <UButton to="#contact">Contact Me</UButton>
             </div>
           </div>
         </div>
@@ -186,6 +193,13 @@ const mainLeftMarginClass = 'lg:ml-[300px]';
         </header>
         <Portfolio />
       </section>
+
+      <!-- Contact -->
+      <section id="contact">
+        <header>
+          <h2 class="text-3xl font-bold mb-10">Contact Me</h2>
+        </header>
+      </section>
     </main>
   </div>
 </template>
@@ -196,7 +210,7 @@ section {
 }
 
 main section:nth-child(even) {
-  @apply bg-gray-100;
+  @apply bg-gray-200 dark:bg-gray-700;
 }
 </style>
 
@@ -208,5 +222,10 @@ html {
 
 .frame {
   @apply border-white border-8 rounded shadow-lg;
+}
+
+/* dark mode bug */
+.dark\:text-gray-900:is(.dark *) {
+  @apply text-white;
 }
 </style>
