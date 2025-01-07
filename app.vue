@@ -82,20 +82,20 @@ const mainLeftMarginClass = 'lg:ml-[300px]';
     <aside class="flex flex-col w-full p-5 gap-4 bg-secondary fixed h-screen shadow-lg" :class="sidebarWidthClass">
       <section class="h-full flex flex-col justify-between">
         <!-- Top portion of sidebar -->
-        <div>
-          <header class="mb-4">
+        <div class="flex flex-col gap-4">
+          <header>
             <img src="./static/logo-circle-bg.svg" alt="Nerd Specs Creative Logo" class="w-full mx-auto" />
           </header>
           <!-- Has semantic nav built in -->
           <UVerticalNavigation :links="links" />
+          <a href="https://www.codementor.io/@scramlo?refer=badge" class="mx-auto"><img
+              src="https://www.codementor.io/m-badges/scramlo/find-me-on-cm-b.svg" alt="Codementor badge"></a>
         </div>
         <footer class="flex flex-col justify-center items-center">
-          <a href="https://www.codementor.io/@scramlo?refer=badge"><img
-              src="https://www.codementor.io/m-badges/scramlo/find-me-on-cm-b.svg" alt="Codementor badge"></a>
-          <!-- <ColorScheme>
+          <ColorScheme>
             <UButton :icon="darkMode ? 'i-heroicons-moon' : 'i-heroicons-sun'" class="text-white dark:text-white"
               @click="darkMode = !darkMode" :ui="{ rounded: 'rounded-full' }" />
-          </ColorScheme> -->
+          </ColorScheme>
         </footer>
       </section>
       <div>
