@@ -105,9 +105,6 @@ async function openDetails(item: typeof workExperienceItems[0]) {
 </script>
 
 <template>
-    <header>
-        <h2 class="text-3xl font-bold mb-10">Work Experience</h2>
-    </header>
     <UCarousel :items="workExperienceItems" :ui="{ item: 'w-full' }" arrows>
 
         <template #default="{ item }">

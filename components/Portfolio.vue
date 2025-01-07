@@ -1,0 +1,153 @@
+<script setup lang="ts">
+import type { ParsedContent } from '@nuxt/content';
+
+const portfolioItems = [
+    {
+        title: 'DrydenWire',
+        subtitle: 'A Huge Grassroots News Site',
+        slug: 'drydenwire',
+        featuredImage: './img/portfolio/drydenwire/1.png',
+        images: ['./img/portfolio/drydenwire/1.png', './img/portfolio/drydenwire/2.png', './img/portfolio/drydenwire/3.png', './img/portfolio/drydenwire/4.png', './img/portfolio/drydenwire/5.png'],
+    },
+    {
+        title: 'DrydenWire',
+        subtitle: 'A Huge Grassroots News Site',
+        slug: 'drydenwire',
+        featuredImage: './img/portfolio/drydenwire/1.png',
+        images: ['./img/portfolio/drydenwire/1.png', './img/portfolio/drydenwire/2.png', './img/portfolio/drydenwire/3.png', './img/portfolio/drydenwire/4.png', './img/portfolio/drydenwire/5.png'],
+    },
+    {
+        title: 'DrydenWire',
+        subtitle: 'A Huge Grassroots News Site',
+        slug: 'drydenwire',
+        featuredImage: './img/portfolio/drydenwire/1.png',
+        images: ['./img/portfolio/drydenwire/1.png', './img/portfolio/drydenwire/2.png', './img/portfolio/drydenwire/3.png', './img/portfolio/drydenwire/4.png', './img/portfolio/drydenwire/5.png'],
+    },
+    {
+        title: 'DrydenWire',
+        subtitle: 'A Huge Grassroots News Site',
+        slug: 'drydenwire',
+        featuredImage: './img/portfolio/drydenwire/1.png',
+        images: ['./img/portfolio/drydenwire/1.png', './img/portfolio/drydenwire/2.png', './img/portfolio/drydenwire/3.png', './img/portfolio/drydenwire/4.png', './img/portfolio/drydenwire/5.png'],
+    },
+    {
+        title: 'DrydenWire',
+        subtitle: 'A Huge Grassroots News Site',
+        slug: 'drydenwire',
+        featuredImage: './img/portfolio/drydenwire/1.png',
+        images: ['./img/portfolio/drydenwire/1.png', './img/portfolio/drydenwire/2.png', './img/portfolio/drydenwire/3.png', './img/portfolio/drydenwire/4.png', './img/portfolio/drydenwire/5.png'],
+    },
+    {
+        title: 'DrydenWire',
+        subtitle: 'A Huge Grassroots News Site',
+        slug: 'drydenwire',
+        featuredImage: './img/portfolio/drydenwire/1.png',
+        images: ['./img/portfolio/drydenwire/1.png', './img/portfolio/drydenwire/2.png', './img/portfolio/drydenwire/3.png', './img/portfolio/drydenwire/4.png', './img/portfolio/drydenwire/5.png'],
+    },
+];
+
+const modalData: Ref<{ portfolioItem: typeof portfolioItems[0] | null, markdown: ParsedContent | null, isModalOpen: boolean }> = ref({
+    portfolioItem: null,
+    markdown: null,
+    isModalOpen: false,
+});
+
+async function openDetails(item: typeof portfolioItems[0]) {
+    let markdown: ParsedContent | null = null;
+    try {
+        const { data } = await useAsyncData('portfolio', () => queryContent(`portfolio/${item.slug}`).findOne());
+        markdown = data.value;
+    } catch (e) {
+        console.error(e);
+    }
+
+    modalData.value = {
+        portfolioItem: item,
+        markdown,
+        isModalOpen: true,
+    };
+}
+</script>
+
+<template>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div v-for="item in portfolioItems">
+            <button @click="openDetails(item)" aria-label="View Details">
+                <img :src="item.featuredImage" :alt="item.title" class="frame" />
+            </button>
+            <h3 class="text-2xl">{{ item.title }}</h3>
+        </div>
+    </div>
+    <UModal v-model="modalData.isModalOpen"
+        :ui="{ height: 'h-[80vh] overflow-scroll', width: 'sm:max-w-1/2 sm:w-1/2' }">
+        <UCard :ui="{ ring: '', divide: 'divide-y divide-gray-100 dark:divide-gray-800' }">
+            <template #header>
+                <div class="flex justify-between items-center">
+                    <span><strong>{{ modalData.portfolioItem?.title }}</strong> &bull; {{
+                        modalData.portfolioItem?.subtitle }}</span>
+                    <UButton :padded="false" color="gray" variant="link" icon="i-heroicons-x-mark-20-solid"
+                        @click="modalData.isModalOpen = false" />
+                </div>
+            </template>
+
+            <div class="flex flex-col gap-5">
+                <UCarousel v-slot="{ item }" :items="modalData.portfolioItem?.images" :ui="{ item: 'basis-full' }"
+                    class="rounded-lg overflow-hidden" arrows>
+                    <img :src="item" class="w-full" draggable="false">
+                </UCarousel>
+                <ContentRendererMarkdown v-if="modalData.markdown" :value="modalData.markdown" />
+                <div v-else class="flex flex-col gap-4">
+                    <USkeleton class="h-48" />
+                    <USkeleton class="h-4" />
+                    <USkeleton class="h-4" />
+                    <USkeleton class="h-4" />
+                    <USkeleton class="h-4" />
+                    <USkeleton class="h-4" />
+                </div>
+            </div>
+        </UCard>
+    </UModal>
+</template>
+
+<style scoped>
+/* markdown styles */
+:deep(div[data-content-id*="content:"]) {
+
+    /* links */
+    a {
+        @apply text-blue-500 underline;
+    }
+
+    a:visited {
+        @apply text-purple-500 underline;
+    }
+
+    a:hover {
+        @apply text-blue-700 underline;
+    }
+
+    p:not(:first-child) {
+        @apply my-3;
+    }
+
+    ul {
+        @apply ml-5 list-disc;
+    }
+
+    li {
+        @apply my-2;
+    }
+
+    img {
+        @apply border-white border-8 rounded shadow-lg;
+    }
+
+    table {
+        @apply w-full;
+    }
+
+    tr {
+        @apply grid grid-cols-2;
+    }
+}
+</style>

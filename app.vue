@@ -90,10 +90,12 @@ const mainLeftMarginClass = 'lg:ml-[300px]';
           <UVerticalNavigation :links="links" />
         </div>
         <footer class="flex flex-col justify-center items-center">
-          <ColorScheme>
+          <a href="https://www.codementor.io/@scramlo?refer=badge"><img
+              src="https://www.codementor.io/m-badges/scramlo/find-me-on-cm-b.svg" alt="Codementor badge"></a>
+          <!-- <ColorScheme>
             <UButton :icon="darkMode ? 'i-heroicons-moon' : 'i-heroicons-sun'" class="text-white dark:text-white"
               @click="darkMode = !darkMode" :ui="{ rounded: 'rounded-full' }" />
-          </ColorScheme>
+          </ColorScheme> -->
         </footer>
       </section>
       <div>
@@ -130,6 +132,9 @@ const mainLeftMarginClass = 'lg:ml-[300px]';
 
       <!-- work experience -->
       <section id="work-experience" class="flex flex-col">
+        <header>
+          <h2 class="text-3xl font-bold mb-10">Work Experience</h2>
+        </header>
         <WorkExperienceSlider />
       </section>
 
@@ -175,7 +180,12 @@ const mainLeftMarginClass = 'lg:ml-[300px]';
       </section>
 
       <!-- Portfolio -->
-      <section></section>
+      <section id="portfolio">
+        <header>
+          <h2 class="text-3xl font-bold mb-10">Portfolio</h2>
+        </header>
+        <Portfolio />
+      </section>
     </main>
   </div>
 </template>
