@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const colorMode = useColorMode();
+colorMode.forced = true;
 colorMode.preference = 'light';
 
 const darkMode = ref(false);
