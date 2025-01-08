@@ -199,9 +199,11 @@ const mainLeftMarginClass = 'lg:ml-[300px]';
         <header>
           <h2 class="text-3xl font-bold mb-10">Contact Me</h2>
         </header>
+        <Contact />
       </section>
     </main>
   </div>
+  <UNotifications />
 </template>
 
 <style scoped>
