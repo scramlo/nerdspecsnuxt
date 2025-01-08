@@ -1,48 +1,38 @@
 <script setup lang="ts">
 import type { ParsedContent } from '@nuxt/content';
 
+function buildImgUrls(slug: string, count: number) {
+    const images = [];
+    for (let i = 1; i <= count; i++) {
+        images.push(`./img/portfolio/${slug}/${i}.png`);
+    }
+    return images;
+}
+
 const portfolioItems = [
     {
         title: 'DrydenWire',
         subtitle: 'A Huge Grassroots News Site',
         slug: 'drydenwire',
-        featuredImage: './img/portfolio/drydenwire/1.png',
-        images: ['./img/portfolio/drydenwire/1.png', './img/portfolio/drydenwire/2.png', './img/portfolio/drydenwire/3.png', './img/portfolio/drydenwire/4.png', './img/portfolio/drydenwire/5.png'],
+        images: buildImgUrls('drydenwire', 5),
     },
     {
-        title: 'DrydenWire',
-        subtitle: 'A Huge Grassroots News Site',
-        slug: 'drydenwire',
-        featuredImage: './img/portfolio/drydenwire/1.png',
-        images: ['./img/portfolio/drydenwire/1.png', './img/portfolio/drydenwire/2.png', './img/portfolio/drydenwire/3.png', './img/portfolio/drydenwire/4.png', './img/portfolio/drydenwire/5.png'],
+        title: 'NEI District',
+        subtitle: 'A Large Denominational District',
+        slug: 'neidistrict',
+        images: buildImgUrls('neidistrict', 5),
     },
     {
-        title: 'DrydenWire',
-        subtitle: 'A Huge Grassroots News Site',
-        slug: 'drydenwire',
-        featuredImage: './img/portfolio/drydenwire/1.png',
-        images: ['./img/portfolio/drydenwire/1.png', './img/portfolio/drydenwire/2.png', './img/portfolio/drydenwire/3.png', './img/portfolio/drydenwire/4.png', './img/portfolio/drydenwire/5.png'],
+        title: 'Hidden Diamond Homes',
+        subtitle: 'High-Performance House Flippers',
+        slug: 'hiddendiamondhomes',
+        images: buildImgUrls('hiddendiamondhomes', 4),
     },
     {
-        title: 'DrydenWire',
-        subtitle: 'A Huge Grassroots News Site',
-        slug: 'drydenwire',
-        featuredImage: './img/portfolio/drydenwire/1.png',
-        images: ['./img/portfolio/drydenwire/1.png', './img/portfolio/drydenwire/2.png', './img/portfolio/drydenwire/3.png', './img/portfolio/drydenwire/4.png', './img/portfolio/drydenwire/5.png'],
-    },
-    {
-        title: 'DrydenWire',
-        subtitle: 'A Huge Grassroots News Site',
-        slug: 'drydenwire',
-        featuredImage: './img/portfolio/drydenwire/1.png',
-        images: ['./img/portfolio/drydenwire/1.png', './img/portfolio/drydenwire/2.png', './img/portfolio/drydenwire/3.png', './img/portfolio/drydenwire/4.png', './img/portfolio/drydenwire/5.png'],
-    },
-    {
-        title: 'DrydenWire',
-        subtitle: 'A Huge Grassroots News Site',
-        slug: 'drydenwire',
-        featuredImage: './img/portfolio/drydenwire/1.png',
-        images: ['./img/portfolio/drydenwire/1.png', './img/portfolio/drydenwire/2.png', './img/portfolio/drydenwire/3.png', './img/portfolio/drydenwire/4.png', './img/portfolio/drydenwire/5.png'],
+        title: 'Pray Wabash',
+        subtitle: 'A City-Wide Prayer House',
+        slug: 'praywabash',
+        images: buildImgUrls('praywabash', 8),
     },
 ];
 
@@ -73,7 +63,7 @@ async function openDetails(item: typeof portfolioItems[0]) {
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <div v-for="item in portfolioItems">
             <button @click="openDetails(item)" aria-label="View Details">
-                <img :src="item.featuredImage" :alt="item.title" class="frame" />
+                <img :src="item.images[0]" :alt="item.title" class="frame hover-up" />
             </button>
             <h3 class="text-2xl">{{ item.title }}</h3>
         </div>
@@ -86,7 +76,7 @@ async function openDetails(item: typeof portfolioItems[0]) {
                     <span><strong>{{ modalData.portfolioItem?.title }}</strong> &bull; {{
                         modalData.portfolioItem?.subtitle }}</span>
                     <UButton :padded="false" color="gray" variant="link" icon="i-heroicons-x-mark-20-solid"
-                        @click="modalData.isModalOpen = false" />
+                        @click="modalData.isModalOpen = false" aria-label="Close portfolio details" />
                 </div>
             </template>
 

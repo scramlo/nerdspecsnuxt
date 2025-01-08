@@ -145,7 +145,7 @@ async function openDetails(item: typeof workExperienceItems[0]) {
                     <span><strong>{{ modalData.workExperienceItem?.title }}</strong> &bull; {{
                         modalData.workExperienceItem?.position }}</span>
                     <UButton :padded="false" color="gray" variant="link" icon="i-heroicons-x-mark-20-solid"
-                        @click="modalData.isModalOpen = false" />
+                        @click="modalData.isModalOpen = false" aria-label="Close work experience details" />
                 </div>
             </template>
 

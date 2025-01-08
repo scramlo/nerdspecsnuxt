@@ -230,4 +230,9 @@ html {
 .dark\:text-gray-900:is(.dark *) {
   @apply text-white;
 }
+
+/* useful hover */
+.hover-up {
+  @apply hover:transform hover:-translate-y-2 transition-transform duration-300;
+}
 </style>
