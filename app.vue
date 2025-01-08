@@ -153,7 +153,7 @@ const mainLeftMarginClass = 'lg:ml-[300px]';
         <div class="flex gap-4">
           <article class="flex flex-col gap-2">
             <a :href="blogPosts[0]?.url">
-              <img :src="blogPosts[0]?.coverImage.url" :alt="blogPosts[0]?.title" class="frame" />
+              <img :src="blogPosts[0]?.coverImage.url" :alt="blogPosts[0]?.title" class="frame hover-up" />
             </a>
             <h3 class="text-2xl">
               <a :href="blogPosts[0]?.url">{{ blogPosts[0]?.title }}</a>
@@ -165,7 +165,7 @@ const mainLeftMarginClass = 'lg:ml-[300px]';
           </article>
           <article class="flex flex-col gap-2">
             <a :href="blogPosts[1]?.url">
-              <img :src="blogPosts[1]?.coverImage.url" :alt="blogPosts[1]?.title" class="w-full frame" />
+              <img :src="blogPosts[1]?.coverImage.url" :alt="blogPosts[1]?.title" class="frame hover-up" />
             </a>
             <h3 class="text-2xl">{{ blogPosts[1]?.title }}</h3>
             <p class="text-xl">{{ blogPosts[1]?.subtitle }}</p>
@@ -175,7 +175,7 @@ const mainLeftMarginClass = 'lg:ml-[300px]';
           </article>
           <article class="flex flex-col gap-2">
             <a :href="blogPosts[2]?.url">
-              <img :src="blogPosts[2]?.coverImage.url" :alt="blogPosts[2]?.title" class="w-full frame" />
+              <img :src="blogPosts[2]?.coverImage.url" :alt="blogPosts[2]?.title" class="frame hover-up" />
             </a>
             <h3 class="text-2xl">{{ blogPosts[2]?.title }}</h3>
             <p class="text-xl">{{ blogPosts[2]?.subtitle }}</p>

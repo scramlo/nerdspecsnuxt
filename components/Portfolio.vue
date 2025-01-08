@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import type { ParsedContent } from '@nuxt/content';
 
-function buildImgUrls(slug: string, count: number) {
+function buildImgUrls(slug: string, count: number, hasVideo = false) {
     const images = [];
     for (let i = 1; i <= count; i++) {
         images.push(`./img/portfolio/${slug}/${i}.png`);
+    }
+    if (hasVideo) {
+        images.push(`./img/portfolio/${slug}/video.mp4`);
     }
     return images;
 }
@@ -20,7 +23,7 @@ const portfolioItems = [
         title: 'NEI District',
         subtitle: 'A Large Denominational District',
         slug: 'neidistrict',
-        images: buildImgUrls('neidistrict', 5),
+        images: buildImgUrls('neidistrict', 5, true),
     },
     {
         title: 'Hidden Diamond Homes',
@@ -33,6 +36,36 @@ const portfolioItems = [
         subtitle: 'A City-Wide Prayer House',
         slug: 'praywabash',
         images: buildImgUrls('praywabash', 8),
+    },
+    {
+        title: 'Trustease',
+        subtitle: 'A Work Order App for Churches',
+        slug: 'trustease',
+        images: buildImgUrls('trustease', 1, true),
+    },
+    {
+        title: 'The Look',
+        subtitle: 'A Thriving New Salon',
+        slug: 'thelook',
+        images: buildImgUrls('thelook', 7),
+    },
+    {
+        title: 'New Journey Community Church',
+        subtitle: 'A Modern Church',
+        slug: 'njcc',
+        images: buildImgUrls('njcc', 4),
+    },
+    {
+        title: 'Jack Pine Creations',
+        subtitle: 'An Artist with Big Dreams!',
+        slug: 'jackpine',
+        images: buildImgUrls('jackpine', 5),
+    },
+    {
+        title: 'Harris and Willow',
+        subtitle: 'A Chic Blog and Store',
+        slug: 'harrisandwillow',
+        images: buildImgUrls('harrisandwillow', 4),
     },
 ];
 
@@ -83,7 +116,12 @@ async function openDetails(item: typeof portfolioItems[0]) {
             <div class="flex flex-col gap-5">
                 <UCarousel v-slot="{ item }" :items="modalData.portfolioItem?.images" :ui="{ item: 'basis-full' }"
                     class="rounded-lg overflow-hidden" arrows>
-                    <img :src="item" class="w-full" draggable="false">
+                    <template v-if="item.endsWith('.png')">
+                        <img :src="item" class="w-full" draggable="false">
+                    </template>
+                    <template v-else>
+                        <video :src="item" class="w-full" controls></video>
+                    </template>
                 </UCarousel>
                 <ContentRendererMarkdown v-if="modalData.markdown" :value="modalData.markdown" />
                 <div v-else class="flex flex-col gap-4">
