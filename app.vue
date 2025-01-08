@@ -118,7 +118,7 @@ onMounted(() => {
   <div v-if="sidebarOpen !== undefined" class="flex flex-col lg:flex-row"
     :class="sidebarOpen && !isLargeScreen ? 'overflow-hidden' : ''">
     <!-- Sidebar -->
-    <aside class="flex flex-col lg:p-5 gap-4 bg-secondary fixed h-screen bg-white d" :class="currentSidebarWidthClass">
+    <aside class="flex flex-col lg:p-5 gap-4 bg-secondary fixed h-screen" :class="currentSidebarWidthClass">
       <!-- mobile button for toggling sidebar -->
       <UButton :icon="sidebarOpen ? 'i-heroicons-bars-3' : 'i-heroicons-bars-3'" id="menu-toggle"
         class="flex lg:hidden top-1/2 z-10 shadow-sm" @click="sidebarOpen = !sidebarOpen" />
