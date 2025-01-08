@@ -115,39 +115,39 @@ onMounted(() => {
 
 </script>
 <template>
-  <div v-if="sidebarOpen !== undefined" class="flex flex-col lg:flex-row">
+  <div v-if="sidebarOpen !== undefined" class="flex flex-col lg:flex-row"
+    :class="sidebarOpen && !isLargeScreen ? 'overflow-hidden' : ''">
     <!-- Sidebar -->
-    <aside class="flex flex-col lg:p-5 gap-4 bg-secondary fixed h-screen shadow-lg bg-white dark:bg-slate-800"
-      :class="currentSidebarWidthClass">
+    <aside class="flex flex-col lg:p-5 gap-4 bg-secondary fixed h-screen bg-white d" :class="currentSidebarWidthClass">
       <!-- mobile button for toggling sidebar -->
       <UButton :icon="sidebarOpen ? 'i-heroicons-bars-3' : 'i-heroicons-bars-3'" id="menu-toggle"
-        class="lg:hidden top-1/2 z-10 shadow-sm" @click="sidebarOpen = !sidebarOpen" />
-      <section class="h-full flex-col justify-between relative" :class="sidebarOpen ? 'flex' : 'hidden'">
-        <!-- Top portion of sidebar -->
-        <div class="flex flex-col gap-4">
-          <header>
-            <a href="/">
-              <img src="./static/logo-circle-bg.svg" alt="Nerd Specs Creative Logo" class="w-1/2 lg:w-full mx-auto" />
-            </a>
-          </header>
-          <!-- Has semantic nav built in -->
-          <UVerticalNavigation :links="links" :ui="{ label: 'text-lg' }" />
-        </div>
-        <footer class="flex flex-col gap-4 justify-center items-center">
-          <a href="https://www.codementor.io/@scramlo?refer=badge" class="mx-auto"><img
-              src="https://www.codementor.io/m-badges/scramlo/find-me-on-cm-b.svg" alt="Codementor badge"></a>
-          <ColorScheme>
-            <UButton :icon="darkMode ? 'i-heroicons-moon' : 'i-heroicons-sun'" class="text-white dark:text-white"
-              @click="darkMode = !darkMode" :ui="{ rounded: 'rounded-full' }" />
-          </ColorScheme>
-        </footer>
-      </section>
-      <div>
-
-      </div>
+        class="flex lg:hidden top-1/2 z-10 shadow-sm" @click="sidebarOpen = !sidebarOpen" />
+      <Transition name="slide-sidebar">
+        <section v-if="sidebarOpen"
+          class="h-full flex flex-col justify-between relative bg-white dark:bg-slate-800 shadow-lg">
+          <!-- Top portion of sidebar -->
+          <div class="flex flex-col gap-4">
+            <header>
+              <a href="/">
+                <img src="./static/logo-circle-bg.svg" alt="Nerd Specs Creative Logo" class="w-1/2 lg:w-full mx-auto" />
+              </a>
+            </header>
+            <!-- Has semantic nav built in -->
+            <UVerticalNavigation :links="links" :ui="{ label: 'text-lg' }" />
+          </div>
+          <footer class="flex flex-col gap-4 justify-center items-center">
+            <a href="https://www.codementor.io/@scramlo?refer=badge" class="mx-auto"><img
+                src="https://www.codementor.io/m-badges/scramlo/find-me-on-cm-b.svg" alt="Codementor badge"></a>
+            <ColorScheme>
+              <UButton :icon="darkMode ? 'i-heroicons-moon' : 'i-heroicons-sun'" class="text-white dark:text-white"
+                @click="darkMode = !darkMode" :ui="{ rounded: 'rounded-full' }" />
+            </ColorScheme>
+          </footer>
+        </section>
+      </Transition>
     </aside>
 
-    <main class="flex flex-col w-full mt-32 lg:mt-0" :class="currentMainLeftMarginClass">
+    <main class="flex flex-col w-full mt-32 lg:mt-0 transition-all duration-300" :class="currentMainLeftMarginClass">
 
       <!-- About Me -->
       <section id="about-me" class="flex flex-col-reverse lg:flex-row gap-4 justify-center items-center h-screen">
@@ -273,8 +273,33 @@ main section:nth-child(even) {
   border-bottom-right-radius: 1rem;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
-  display: flex;
   justify-content: end;
+}
+
+/* Transition classes for sliding animation */
+.slide-sidebar-enter-active,
+.slide-sidebar-leave-active {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.slide-sidebar-enter-from {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+.slide-sidebar-enter-to {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.slide-sidebar-leave-from {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.slide-sidebar-leave-to {
+  transform: translateX(-100%);
+  opacity: 0;
 }
 </style>
 
