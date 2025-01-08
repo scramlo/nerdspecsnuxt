@@ -4,6 +4,8 @@ colorMode.preference = 'light';
 
 const darkMode = ref(false);
 
+const isLargeScreen = ref(true);
+
 watch(darkMode, (darkModeValue) => {
   if (darkModeValue === true) {
     colorMode.preference = 'dark';
@@ -20,10 +22,10 @@ const links = computed(() => {
     to: '#about-me',
     active: window?.location?.hash === '#about-me' || window?.location?.hash === ''
   }, {
-    label: 'Work Experience',
+    label: 'Experience',
     icon: 'i-heroicons-briefcase',
-    to: '#work-experience',
-    active: window?.location?.hash === '#work-experience'
+    to: '#experience',
+    active: window?.location?.hash === '#experience'
   }, {
     label: 'Blog',
     icon: 'i-heroicons-book-open',
@@ -79,23 +81,56 @@ const blogPosts = computed(() => {
   return data.value.publication.posts.edges.map((edge) => edge.node);
 });
 
-const sidebarWidthClass = 'lg:w-[300px]';
-const mainLeftMarginClass = 'lg:ml-[300px]';
+const sidebarOpen = ref(true);
+
+const sidebarOpenWidthClass = 'w-[300px]';
+const sidebarClosedWidthClass = 'w-0';
+
+const sidebarOpenLeftMarginClass = 'ml-[300px]';
+const sidebarClosedLeftMarginClass = 'ml-0';
+
+const currentSidebarWidthClass = ref(sidebarOpenWidthClass);
+const currentMainLeftMarginClass = ref(sidebarOpenLeftMarginClass);
+
+watch(sidebarOpen, (val) => {
+  if (val === true) {
+    currentSidebarWidthClass.value = sidebarOpenWidthClass;
+    currentMainLeftMarginClass.value = sidebarOpenLeftMarginClass;
+  } else {
+    currentSidebarWidthClass.value = sidebarClosedWidthClass;
+    currentMainLeftMarginClass.value = sidebarClosedLeftMarginClass;
+  }
+});
+
+onMounted(() => {
+  isLargeScreen.value = window.innerWidth >= 1024;
+
+  // close sidebar on small screens
+  if (!isLargeScreen.value) {
+    sidebarOpen.value = false;
+  }
+});
+
 </script>
 <template>
   <div class="flex flex-col lg:flex-row">
     <!-- Sidebar -->
-    <aside class="flex flex-col w-full p-5 gap-4 bg-secondary fixed h-screen shadow-lg" :class="sidebarWidthClass">
-      <section class="h-full flex flex-col justify-between">
+    <aside class="flex flex-col lg:p-5 gap-4 bg-secondary fixed h-screen shadow-lg bg-white dark:bg-slate-800"
+      :class="currentSidebarWidthClass">
+      <!-- mobile button for toggling sidebar -->
+      <UButton :ui="{ rounded: 'rounded-full' }"
+        :icon="sidebarOpen ? 'i-heroicons-arrow-left' : 'i-heroicons-arrow-right'"
+        class="lg:hidden absolute -right-5 top-1/2 z-10" @click="sidebarOpen = !sidebarOpen" />
+      <section class="h-full flex-col justify-between relative" :class="sidebarOpen ? 'flex' : 'hidden'">
         <!-- Top portion of sidebar -->
         <div class="flex flex-col gap-4">
           <header>
             <a href="/">
-              <img src="./static/logo-circle-bg.svg" alt="Nerd Specs Creative Logo" class="w-full mx-auto" />
+              <img src="./static/logo-circle-bg.svg" alt="Nerd Specs Creative Logo" class="w-1/2 lg:w-full mx-auto" />
             </a>
           </header>
           <!-- Has semantic nav built in -->
-          <UVerticalNavigation :links="links" />
+          <UVerticalNavigation :links="links" :ui="{ label: 'text-lg' }" />
         </div>
         <footer class="flex flex-col gap-4 justify-center items-center">
           <a href="https://www.codementor.io/@scramlo?refer=badge" class="mx-auto"><img
@@ -111,11 +146,11 @@ const mainLeftMarginClass = 'lg:ml-[300px]';
       </div>
     </aside>
 
-    <main class="flex flex-col w-full" :class="mainLeftMarginClass">
+    <main class="flex flex-col w-full" :class="currentMainLeftMarginClass">
 
       <!-- About Me -->
-      <section id="about-me" class="flex gap-4 justify-center items-center h-screen">
-        <div class="w-1/2 flex justify-center">
+      <section id="about-me" class="flex flex-col-reverse lg:flex-row gap-4 justify-center items-center h-screen">
+        <div class="lg:w-1/2 flex justify-center">
           <div class="flex flex-col gap-2">
             <header>
               <h2 class="text-3xl font-bold">Hello!</h2>
@@ -128,20 +163,20 @@ const mainLeftMarginClass = 'lg:ml-[300px]';
               and solid testing. I am a flexible developer and strong leader, ready to help you accomplish your goals.
             </p>
             <div class="flex gap-4">
-              <UButton to="#work-experience" color="gray">Work Experience</UButton>
+              <UButton to="#experience" color="gray">Experience</UButton>
               <UButton to="#contact">Contact Me</UButton>
             </div>
           </div>
         </div>
-        <div class="w-1/2 flex justify-center items-center">
+        <div class="lg:w-1/2 lg:flex justify-center items-center">
           <img src="./static/brian-main-image.webp" alt="Brian Scramlin" class="max-h-[80vh] frame" />
         </div>
       </section>
 
       <!-- work experience -->
-      <section id="work-experience" class="flex flex-col">
+      <section id="experience" class="flex flex-col">
         <header>
-          <h2 class="text-3xl font-bold mb-10">Work Experience</h2>
+          <h2 class="text-3xl font-bold mb-10">Experience</h2>
         </header>
         <WorkExperienceSlider />
       </section>
@@ -151,13 +186,13 @@ const mainLeftMarginClass = 'lg:ml-[300px]';
         <header>
           <h2 class="text-3xl font-bold mb-10">Latest Blog Posts</h2>
         </header>
-        <div class="flex gap-4">
+        <div class="flex flex-col lg:flex-row gap-4">
           <article class="flex flex-col gap-2">
-            <a :href="blogPosts[0]?.url">
+            <a :href="blogPosts[0]?.url" target="_blank">
               <img :src="blogPosts[0]?.coverImage.url" :alt="blogPosts[0]?.title" class="frame hover-up" />
             </a>
             <h3 class="text-2xl">
-              <a :href="blogPosts[0]?.url">{{ blogPosts[0]?.title }}</a>
+              <a :href="blogPosts[0]?.url" target="_blank">{{ blogPosts[0]?.title }}</a>
             </h3>
             <p class="text-xl">{{ blogPosts[0]?.subtitle }}</p>
             <p class="flex items-center gap-1">
@@ -165,20 +200,24 @@ const mainLeftMarginClass = 'lg:ml-[300px]';
             </p>
           </article>
           <article class="flex flex-col gap-2">
-            <a :href="blogPosts[1]?.url">
+            <a :href="blogPosts[1]?.url" target="_blank">
               <img :src="blogPosts[1]?.coverImage.url" :alt="blogPosts[1]?.title" class="frame hover-up" />
             </a>
-            <h3 class="text-2xl">{{ blogPosts[1]?.title }}</h3>
+            <h3 class="text-2xl">
+              <a :href="blogPosts[1]?.url" target="_blank">{{ blogPosts[1]?.title }}</a>
+            </h3>
             <p class="text-xl">{{ blogPosts[1]?.subtitle }}</p>
             <p class="flex items-center gap-1">
               <UIcon name="i-heroicons-book-open" /> {{ blogPosts[0]?.readTimeInMinutes }} min read
             </p>
           </article>
           <article class="flex flex-col gap-2">
-            <a :href="blogPosts[2]?.url">
+            <a :href="blogPosts[2]?.url" target="_blank">
               <img :src="blogPosts[2]?.coverImage.url" :alt="blogPosts[2]?.title" class="frame hover-up" />
             </a>
-            <h3 class="text-2xl">{{ blogPosts[2]?.title }}</h3>
+            <h3 class="text-2xl">
+              <a :href="blogPosts[2]?.url" target="_blank">{{ blogPosts[2]?.title }}</a>
+            </h3>
             <p class="text-xl">{{ blogPosts[2]?.subtitle }}</p>
             <p class="flex items-center gap-1">
               <UIcon name="i-heroicons-book-open" /> {{ blogPosts[0]?.readTimeInMinutes }} min read
@@ -202,6 +241,11 @@ const mainLeftMarginClass = 'lg:ml-[300px]';
         </header>
         <Contact />
       </section>
+
+      <!-- Footer -->
+      <section class="flex flex-col items-center justify-center">
+        Thanks for stopping by! &#x1F44B;
+      </section>
     </main>
   </div>
   <UNotifications />
@@ -209,11 +253,11 @@ const mainLeftMarginClass = 'lg:ml-[300px]';
 
 <style scoped>
 section {
-  @apply p-10;
+  @apply p-5 lg:p-10;
 }
 
 main section:nth-child(even) {
-  @apply bg-gray-200 dark:bg-gray-700;
+  @apply bg-gray-200 dark:bg-slate-800;
 }
 </style>
 

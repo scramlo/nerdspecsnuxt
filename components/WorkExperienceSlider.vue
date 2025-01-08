@@ -108,7 +108,7 @@ async function openDetails(item: typeof workExperienceItems[0]) {
     <UCarousel :items="workExperienceItems" :ui="{ item: 'w-full' }" arrows>
 
         <template #default="{ item }">
-            <article class="grid grid-cols-2 mx-2 gap-12 justify-center items-center">
+            <article class="flex flex-col-reverse lg:grid lg:grid-cols-2 mx-2 lg:gap-12 justify-center items-center">
                 <div class="flex flex-col gap-4">
                     <div class="flex items-center gap-2">
                         <img v-for="logoUrl in item.logos" :src="logoUrl" :alt="`${item.title} Logo`"
@@ -121,7 +121,7 @@ async function openDetails(item: typeof workExperienceItems[0]) {
                         </span>
                     </p>
                 </div>
-                <img :src="item.teamImage" alt="" class="frame max-h-[50vh] m-auto" />
+                <img :src="item.teamImage" alt="" class="frame max-h-[50vh] lg:m-auto" />
             </article>
         </template>
 
