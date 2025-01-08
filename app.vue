@@ -120,9 +120,8 @@ onMounted(() => {
     <aside class="flex flex-col lg:p-5 gap-4 bg-secondary fixed h-screen shadow-lg bg-white dark:bg-slate-800"
       :class="currentSidebarWidthClass">
       <!-- mobile button for toggling sidebar -->
-      <UButton :ui="{ rounded: 'rounded-full' }"
-        :icon="sidebarOpen ? 'i-heroicons-arrow-left' : 'i-heroicons-arrow-right'"
-        class="lg:hidden absolute -right-5 top-1/2 z-10" @click="sidebarOpen = !sidebarOpen" />
+      <UButton :icon="sidebarOpen ? 'i-heroicons-bars-3' : 'i-heroicons-bars-3'" id="menu-toggle"
+        class="lg:hidden top-1/2 z-10 shadow-sm" @click="sidebarOpen = !sidebarOpen" />
       <section class="h-full flex-col justify-between relative" :class="sidebarOpen ? 'flex' : 'hidden'">
         <!-- Top portion of sidebar -->
         <div class="flex flex-col gap-4">
@@ -263,6 +262,19 @@ section {
 
 main section:nth-child(even) {
   @apply bg-gray-200 dark:bg-slate-800;
+}
+
+#menu-toggle {
+  padding: 0.5rem;
+  width: 2rem;
+  position: absolute;
+  right: -2rem;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  display: flex;
+  justify-content: end;
 }
 </style>
 
