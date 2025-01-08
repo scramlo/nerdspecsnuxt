@@ -1,5 +1,6 @@
 <script setup lang="ts">
-const colorMode = useColorMode()
+const colorMode = useColorMode();
+colorMode.preference = 'light';
 
 const darkMode = ref(false);
 
@@ -234,5 +235,46 @@ html {
 /* useful hover */
 .hover-up {
   @apply hover:transform hover:-translate-y-2 transition-transform duration-300;
+}
+
+/* markdown styles */
+:deep(div[data-content-id*="content:"]) {
+
+  /* links */
+  a {
+    @apply text-blue-500 underline;
+  }
+
+  a:visited {
+    @apply text-purple-500 underline;
+  }
+
+  a:hover {
+    @apply text-blue-700 underline;
+  }
+
+  p:not(:first-child) {
+    @apply my-3;
+  }
+
+  ul {
+    @apply ml-5 list-disc;
+  }
+
+  li {
+    @apply my-2;
+  }
+
+  img {
+    @apply border-white border-8 rounded shadow-lg;
+  }
+
+  table {
+    @apply w-full;
+  }
+
+  tr {
+    @apply grid grid-cols-2;
+  }
 }
 </style>
