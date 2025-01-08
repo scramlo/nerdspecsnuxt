@@ -81,7 +81,7 @@ const blogPosts = computed(() => {
   return data.value.publication.posts.edges.map((edge) => edge.node);
 });
 
-const sidebarOpen = ref(true);
+const sidebarOpen = ref();
 
 const sidebarOpenWidthClass = 'w-[300px]';
 const sidebarClosedWidthClass = 'w-0';
@@ -108,12 +108,14 @@ onMounted(() => {
   // close sidebar on small screens
   if (!isLargeScreen.value) {
     sidebarOpen.value = false;
+  } else {
+    sidebarOpen.value = true;
   }
 });
 
 </script>
 <template>
-  <div class="flex flex-col lg:flex-row">
+  <div v-if="sidebarOpen !== undefined" class="flex flex-col lg:flex-row">
     <!-- Sidebar -->
     <aside class="flex flex-col lg:p-5 gap-4 bg-secondary fixed h-screen shadow-lg bg-white dark:bg-slate-800"
       :class="currentSidebarWidthClass">
@@ -247,6 +249,9 @@ onMounted(() => {
         Thanks for stopping by! &#x1F44B;
       </section>
     </main>
+  </div>
+  <div v-else class="h-screen w-screen flex justify-center items-center">
+    <Loader />
   </div>
   <UNotifications />
 </template>
