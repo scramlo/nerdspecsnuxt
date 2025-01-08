@@ -112,9 +112,8 @@ async function openDetails(item: typeof workExperienceItems[0]) {
                 <div class="flex flex-col gap-4">
                     <div class="flex items-center gap-2">
                         <img v-for="logoUrl in item.logos" :src="logoUrl" :alt="`${item.title} Logo`"
-                            class="max-w-48 max-h-fit-content" />
+                            class="max-w-48 max-h-fit-content dark:bg-white p-2" />
                     </div>
-                    <!-- <h3 class="text-3xl">{{ item.title }}</h3> -->
                     <p class="flex flex-col gap-2">
                         <span>{{ item.description }}</span>
                         <span class="flex flex-row-reverse">
