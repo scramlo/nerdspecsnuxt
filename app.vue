@@ -146,7 +146,7 @@ onMounted(() => {
       </div>
     </aside>
 
-    <main class="flex flex-col w-full" :class="currentMainLeftMarginClass">
+    <main class="flex flex-col w-full mt-32 lg:mt-0" :class="currentMainLeftMarginClass">
 
       <!-- About Me -->
       <section id="about-me" class="flex flex-col-reverse lg:flex-row gap-4 justify-center items-center h-screen">
