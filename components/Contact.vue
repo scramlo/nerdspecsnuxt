@@ -66,20 +66,20 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
 <template>
     <UForm :schema="schema" :state="state" class="space-y-4" @submit="onSubmit">
         <UFormGroup label="Name" name="name">
-            <UInput v-model="state.name" :loading="inTransit" :disabled="inTransit" placeholder="Name" />
+            <UInput v-model="state.name" :loading="inTransit" :disabled="inTransit || submitted" placeholder="Name" />
         </UFormGroup>
 
         <UFormGroup label="Email" name="email">
-            <UInput v-model="state.email" :loading="inTransit" :disabled="inTransit"
+            <UInput v-model="state.email" :loading="inTransit" :disabled="inTransit || submitted"
                 placeholder="ANewFriend@example.com" />
         </UFormGroup>
 
         <UFormGroup label="Topic" name="topic">
-            <USelect v-model="state.topic" :options="topics" :loading="inTransit" :disabled="inTransit" />
+            <USelect v-model="state.topic" :options="topics" :loading="inTransit" :disabled="inTransit || submitted" />
         </UFormGroup>
 
-        <UFormGroup label="Message" name="message">
-            <UTextarea v-model="state.message" :disabled="inTransit"
+        <UFormGroup label=" Message" name="message">
+            <UTextarea v-model="state.message" :disabled="inTransit || submitted"
                 placeholder="Please share how I can help you today!" />
         </UFormGroup>
 
