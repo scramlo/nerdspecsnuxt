@@ -117,12 +117,12 @@ onMounted(() => {
   <div v-if="sidebarOpen !== undefined" class="flex flex-col lg:flex-row"
     :class="sidebarOpen && !isLargeScreen ? 'overflow-hidden' : ''">
     <!-- Sidebar -->
-    <aside class="flex flex-col lg:p-5 gap-4 bg-secondary fixed h-screen shadow-lg" :class="currentSidebarWidthClass">
+    <aside class="flex flex-col gap-4 bg-secondary fixed h-screen shadow-lg" :class="currentSidebarWidthClass">
       <!-- mobile button for toggling sidebar -->
       <UButton :icon="sidebarOpen ? 'i-heroicons-bars-3' : 'i-heroicons-bars-3'" id="menu-toggle"
         class="flex lg:hidden top-1/2 z-10 shadow-sm" @click="sidebarOpen = !sidebarOpen" />
       <Transition name="slide-sidebar">
-        <section v-if="sidebarOpen" class="h-full flex flex-col justify-between relative bg-white dark:bg-slate-800">
+        <section v-if="sidebarOpen" class="h-full flex flex-col justify-between relative bg-white dark:bg-gray-900">
           <!-- Top portion of sidebar -->
           <div class="flex flex-col gap-4">
             <header>
@@ -148,7 +148,7 @@ onMounted(() => {
     <main class="flex flex-col w-full mt-32 lg:mt-0 transition-all duration-300" :class="currentMainLeftMarginClass">
 
       <!-- About Me -->
-      <section id="about-me" class="flex flex-col-reverse lg:flex-row gap-4 justify-center items-center h-screen">
+      <section id="about-me" class="flex flex-col-reverse lg:flex-row gap-4 justify-center items-center lg:h-screen">
         <div class="lg:w-1/2 flex justify-center">
           <div class="flex flex-col gap-2">
             <header>
