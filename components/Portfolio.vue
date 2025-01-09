@@ -115,7 +115,7 @@ async function openDetails(item: typeof portfolioItems[0]) {
 
             <div class="flex flex-col gap-5">
                 <UCarousel v-slot="{ item }" :items="modalData.portfolioItem?.images" :ui="{ item: 'basis-full' }"
-                    class="rounded-lg overflow-hidden" arrows>
+                    class="rounded-lg overflow-hidden carousel" arrows>
                     <template v-if="item.endsWith('.png')">
                         <img :src="item" class="w-full" draggable="false">
                     </template>
@@ -136,3 +136,17 @@ async function openDetails(item: typeof portfolioItems[0]) {
         </UCard>
     </UModal>
 </template>
+
+<style scoped>
+:deep(.carousel) button {
+    @apply bg-slate-900;
+}
+
+:deep(.carousel) button:disabled {
+    @apply bg-slate-700;
+}
+
+:deep(.carousel) button:hover {
+    @apply bg-slate-700;
+}
+</style>
