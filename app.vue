@@ -1,7 +1,5 @@
 <script setup lang="ts">
 const colorMode = useColorMode();
-colorMode.forced = true;
-colorMode.preference = 'light';
 
 const darkMode = ref(false);
 
@@ -119,13 +117,12 @@ onMounted(() => {
   <div v-if="sidebarOpen !== undefined" class="flex flex-col lg:flex-row"
     :class="sidebarOpen && !isLargeScreen ? 'overflow-hidden' : ''">
     <!-- Sidebar -->
-    <aside class="flex flex-col lg:p-5 gap-4 bg-secondary fixed h-screen" :class="currentSidebarWidthClass">
+    <aside class="flex flex-col lg:p-5 gap-4 bg-secondary fixed h-screen shadow-lg" :class="currentSidebarWidthClass">
       <!-- mobile button for toggling sidebar -->
       <UButton :icon="sidebarOpen ? 'i-heroicons-bars-3' : 'i-heroicons-bars-3'" id="menu-toggle"
         class="flex lg:hidden top-1/2 z-10 shadow-sm" @click="sidebarOpen = !sidebarOpen" />
       <Transition name="slide-sidebar">
-        <section v-if="sidebarOpen"
-          class="h-full flex flex-col justify-between relative bg-white dark:bg-slate-800 shadow-lg">
+        <section v-if="sidebarOpen" class="h-full flex flex-col justify-between relative bg-white dark:bg-slate-800">
           <!-- Top portion of sidebar -->
           <div class="flex flex-col gap-4">
             <header>

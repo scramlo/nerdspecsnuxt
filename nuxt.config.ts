@@ -15,4 +15,7 @@ export default defineNuxtConfig({
       }
     },
   },
+  colorMode: {
+    preference: 'light', // start on light
+  }
 })
