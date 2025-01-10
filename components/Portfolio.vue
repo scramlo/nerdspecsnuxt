@@ -138,18 +138,6 @@ async function openDetails(item: typeof portfolioItems[0]) {
 </template>
 
 <style scoped>
-:deep(.carousel) button {
-    @apply bg-slate-900;
-}
-
-:deep(.carousel) button:disabled {
-    @apply bg-slate-700;
-}
-
-:deep(.carousel) button:hover {
-    @apply bg-slate-700;
-}
-
 /* markdown styles */
 :deep(div[data-content-id*="content:"]) {
 

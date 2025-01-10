@@ -21,6 +21,12 @@ const links = computed(() => {
     to: '#about-me',
     active: window?.location?.hash === '#about-me' || window?.location?.hash === ''
   }, {
+    label: 'Recommendations',
+    icon: 'i-mingcute-quote-left-fill',
+    to: '#recommendations',
+    active: window?.location?.hash === '#recommendations'
+  },
+  {
     label: 'Experience',
     icon: 'i-heroicons-briefcase',
     to: '#experience',
@@ -172,6 +178,14 @@ onMounted(() => {
         </div>
       </section>
 
+      <!-- Recommendations -->
+      <section id="recommendations" class="flex flex-col">
+        <header>
+          <h2 class="hidden text-3xl font-bold mb-10">Recommendations</h2>
+        </header>
+        <RecommendationSlider />
+      </section>
+
       <!-- work experience -->
       <section id="experience" class="flex flex-col">
         <header>
@@ -311,8 +325,8 @@ html {
   @apply border-white border-8 rounded shadow-lg;
 }
 
-/* dark mode bug */
-.dark\:text-gray-900:is(.dark *) {
+/* buttons need to keep white text because the red primary is so dark. but not when it comes to carousel buttons. */
+.dark\:text-gray-900:is(*):not(.carousel button) {
   @apply text-white;
 }
 
