@@ -16,6 +16,11 @@ const recommendations = [{
     relationship: 'Lead Backend Engineer',
     description: 'Brian’s contributions to our projects have been invaluable, and I can’t recommend him highly enough for any role or opportunity. ',
     image: './img/recommendations/tasi.jpg',
+}, {
+    name: 'Amanda Barber',
+    relationship: 'Product Manager',
+    description: 'Brian is an amazing colleague who integrates his development skills with his sharp critical thinking abilities.',
+    image: './img/recommendations/amanda.jpg',
 }
 ]
 </script>
